@@ -15,7 +15,9 @@ const LoginScreen = () => {
       .then((userCredential) => {
         console.log('Usuario logueado:', userCredential.user);
         Alert.alert('Inicio de sesión exitoso');
-        navigation.navigate('HomeScreen')
+        setEmail("");
+        setPassword("");
+        navigation.navigate('navegacion')
       })
       .catch(error => console.log('Error:', error.message));
   };

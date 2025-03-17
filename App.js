@@ -5,6 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
+import TabNavigation from './navigation/TabNavigation';
 
 const Stack = createStackNavigator();
 
@@ -14,8 +15,9 @@ const App = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name='navegacion' component={TabNavigation} options={{headerShown: false}}/>
+        {/* <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="detalles" component={DetailsScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

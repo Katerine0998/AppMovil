@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
         'center'
     }}>
       <Text> Pantalla de Inicio</Text>
-      <Button title="Ir a Detalles" onPress={() => navigation.navigate('Details')} />
+      <Button title="Ir a Detalles" onPress={() => navigation.navigate('detalles')} />
       <Button title="Cerrar sesión" onPress={handleLogout} />
     </View>
   );
