@@ -18,6 +18,7 @@ const RegisterScreen = () => {
       })
       .catch(error => console.log('Error:', error.message));
   };
+  
 
   return (
     <View style={{ padding: 20 }}>
