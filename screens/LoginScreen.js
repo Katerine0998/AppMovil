@@ -5,7 +5,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,27 +15,47 @@ const LoginScreen = () => {
       .then((userCredential) => {
         console.log('Usuario logueado:', userCredential.user);
         Alert.alert('Inicio de sesión exitoso');
+        setEmail("");
+        setPassword("");
+        navigation.navigate('navegacion')
       })
       .catch(error => console.log('Error:', error.message));
   };
 
-  const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log('Usuario logueado:', userCredential.user);
-        Alert.alert('Registro exitoso');
-      })
-      .catch(error => console.log('Error:', error.message));
-  }
-
   return (
-    <View style={{ padding: 20 }}>
-      <Text>Email:</Text>
-      <TextInput onChangeText={setEmail} style={{ borderWidth: 1, marginBottom: 10 }} />
-      <Text>Contraseña:</Text>
-      <TextInput secureTextEntry onChangeText={setPassword} style={{ borderWidth: 1, marginBottom: 10 }} />
-      <Button title="Iniciar sesión" onPress={handleLogin} />
-      <Button title='Registrarse' onPress={()=> navigation.navigate('Register')}/>
+    <View style={styles.contenedor}>
+      <View style={styles.imagenContainer}>
+        <Image source={require('../assets/login.png')} style={styles.imagenFondo} />
+      </View>
+      <View style={styles.cubierta}>
+        <Text style={styles.titulo}>CliniGO</Text>
+        <View style={styles.inputContainer}>
+          <FontAwesome name="user" size={20} color="gray" style={styles.icon} />
+          <TextInput
+            placeholder="Usuario"
+            style={styles.input}
+            onChangeText={setEmail}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <FontAwesome name="lock" size={20} color="gray" style={styles.icon} />
+          <TextInput
+            placeholder="Contraseña"
+            secureTextEntry
+            onChangeText={setPassword}
+            style={styles.input}
+          />
+        </View>
+        <Pressable>
+          <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Iniciar sesión</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.buttonText}>Registrarse</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
